@@ -1,5 +1,7 @@
 package com.vacay.vacayandroid;
 
+// for each element in the object, make a constructor for each, and have getters and setters for each
+
 public class AppEvent {
     private String eventName;
     private String eventImage;

@@ -1,5 +1,6 @@
 package com.vacay.vacayandroid;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +27,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView eventList;
-    private EventListAdapter mEventListAdapter; // google started this crazy m before name thing for my...
+    private EventListAdapter mEventListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
                                     appEvent.setEventCity(eventObject.getString("eventCity"));
                                 }
 
+                                if(eventObject.has("eventWebsite")) {
+                                    appEvent.setEventWebsite(eventObject.getString("eventWebsite"));
+                                }
+
                                 eventArrayList.add(appEvent);
                             }
 
@@ -107,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    //We want to setup the list now
+    ///////////////////////////////////////////////////////////////////////////////
+    // Setup the list now
     class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHolder> {
         private List<AppEvent> events = new ArrayList<>();
 
@@ -135,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
         class EventListHolder extends RecyclerView.ViewHolder {
             private TextView eventTitle;
-            private TextView eventDescription; // not sure about if we have this
+            //private TextView eventDescription; // Can add this
             private ImageView eventImage;
 
             public EventListHolder(View itemView) {
@@ -146,8 +153,42 @@ public class MainActivity extends AppCompatActivity {
 
             public void bindTo(AppEvent appEvent) {
                 eventTitle.setText(appEvent.getEventName());
-                Picasso.get().load(appEvent.getEventImage()).error(R.drawable.ic_launcher_background).placeholder(R.drawable.ic_launcher_background).into(eventImage); // crap, I use fresco now guess they changed it, let me see
+                Picasso.get().load(appEvent.getEventImage()).error(R.drawable.ic_launcher_background).placeholder(R.drawable.ic_launcher_background).into(eventImage);
             }
         }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+    //Button functionality
+
+    class EventDetail extends AppCompatActivity {
+
+        private Button discoverMoreButton;
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+
+            discoverMoreButton = (Button) findViewById(R.id.discover_more);
+            discoverMoreButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openEventDetails();
+                }
+            });
+        }
+
+        public void openEventDetails() {
+            Intent intent = new Intent(this, EventDetail.class);
+            startActivity(intent);
+        }
+    }
+
+
+
+    //discover Button
+    public void addToSchedule(View v) {
+        Log.d("Event", "addToSchedule was clicked");
     }
 }

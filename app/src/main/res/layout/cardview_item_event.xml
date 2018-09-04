@@ -37,19 +37,21 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/discover_more"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="discoverMore"
                 android:text="@string/discover_on_button" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/add_to_schedule"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="addToSchedule"
                 android:text="@string/add_on_button" />
         </LinearLayout>
 

@@ -4,4 +4,9 @@
     <string name="event_image">Event Image</string>
     <string name="discover_on_button">Discover More</string>
     <string name="add_on_button">Add to Schedule</string>
+
+    <string name="event_description">Event Description</string>
+    <string name="event_price">Event Price</string>
+    <string name="event_city">Event City</string>
+    <string name="event_website">Event Website</string>
 </resources>
