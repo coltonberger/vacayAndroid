@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "240423492819",
+    "firebase_url": "https://vacayandroid.firebaseio.com",
+    "project_id": "vacayandroid",
+    "storage_bucket": "vacayandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240423492819:android:8c93f3a43d0fa48e",
+        "android_client_info": {
+          "package_name": "com.vacay.vacayandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240423492819-k5o8705hnfth0d1bm1tqi61n5eelvr7n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOyXk0v-vlWVJVBKdCOm9R3vEWkdXGT9Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
