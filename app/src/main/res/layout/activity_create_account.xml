@@ -42,7 +42,7 @@
         android:background="#11000000"
         android:ems="10"
         android:hint="Last Name"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:textSize="24sp" />
 
     <EditText
@@ -55,7 +55,7 @@
         android:background="#11000000"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPassword"
+        android:inputType="textEmailAddress"
         android:textSize="24sp" />
 
     <android.support.v7.widget.CardView

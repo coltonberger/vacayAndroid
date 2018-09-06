@@ -1,6 +1,7 @@
 package com.vacay.vacayandroid;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,17 +9,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.w3c.dom.Text;
 
 public class CreateAccount extends AppCompatActivity {
 
-    //public TextView loginPage;
-    //public TextView login;
-
     private EditText userFirstName, userLastName, userEmail, userPassword;
     private TextView createAccountButton;
     private TextView goBackButton;
-
+    private FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -27,11 +30,28 @@ public class CreateAccount extends AppCompatActivity {
         setContentView(R.layout.activity_create_account);
         setupUIViews();
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validate()) {
                     //upload info to database
+                    String user_email = userEmail.getText().toString().trim();
+                    String user_password = userPassword.getText().toString().trim();
+
+                    firebaseAuth.createUserWithEmailAndPassword(user_email, user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if (task.isSuccessful()) {
+                                Toast.makeText (CreateAccount.this, "Sign up successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(CreateAccount.this, Login.class));
+                            } else {
+                                Toast.makeText (CreateAccount.this, "Sign up fail", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });
