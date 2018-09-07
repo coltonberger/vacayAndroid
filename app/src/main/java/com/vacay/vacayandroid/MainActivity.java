@@ -28,6 +28,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView eventList;
     private EventListAdapter mEventListAdapter;
+    private Button cityButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
