@@ -58,7 +58,6 @@ public class Login extends AppCompatActivity {
                startActivity(intent);
            }
        });
-
     }
 
     private void validate(String userEmail, String userPassword) {
@@ -71,9 +70,10 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
-                    Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(Login.this, MainActivity.class));
                 } else {
+                    progressDialog.dismiss();
                     Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_LONG).show();
                 }
             }

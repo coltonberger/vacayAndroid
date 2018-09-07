@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
         mEventListAdapter = new EventListAdapter();
         eventList.setAdapter(mEventListAdapter);
 
-
-         //* JSONObject  response = new JSONObject(response);
-         //JSONarray data = response.getJSONarray("data");
-
         VolleyRequest.makeGetRequest(this, "https://vaca-backend.herokuapp.com/events", new VolleyRequest.RequestCallback() {
             @Override
             public void onResponse(String response, VolleyError error) {
@@ -114,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Setup the list now
+    // Setup the list now with Recycler View (activity main holding recyclerView)
     class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHolder> {
         private List<AppEvent> events = new ArrayList<>();
 
@@ -133,6 +129,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull EventListHolder holder, int position) {
             holder.bindTo(events.get(position)); // that's how to bind
+
+
+        //add onclick listeners here for buttons
+
+
         }
 
         @Override
@@ -141,14 +142,30 @@ public class MainActivity extends AppCompatActivity {
         }
 
         class EventListHolder extends RecyclerView.ViewHolder {
+            //for home display
             private TextView eventTitle;
-            //private TextView eventDescription; // Can add this
             private ImageView eventImage;
+
+            //for detailed
+//            private TextView eventName;
+//            private TextView eventDescription;
+//            private TextView eventCity;
+//            private TextView eventPrice;
+//            private TextView eventWebsite;
 
             public EventListHolder(View itemView) {
                 super(itemView);
+                //for mainPage
                 eventTitle = (TextView) itemView.findViewById(R.id.event_title);
                 eventImage = (ImageView) itemView.findViewById(R.id.event_image);
+
+                //for detailed
+//                eventName = (TextView) itemView.findViewById(R.id.event_name);
+//                eventDescription = (TextView) itemView.findViewById(R.id.event_description);
+//                eventCity = (TextView) itemView.findViewById(R.id.event_city);
+//                eventPrice = (TextView) itemView.findViewById(R.id.event_price);
+//                eventWebsite = (TextView) itemView.findViewById(R.id.event_website);
+
             }
 
             public void bindTo(AppEvent appEvent) {
@@ -156,39 +173,5 @@ public class MainActivity extends AppCompatActivity {
                 Picasso.get().load(appEvent.getEventImage()).error(R.drawable.ic_launcher_background).placeholder(R.drawable.ic_launcher_background).into(eventImage);
             }
         }
-    }
-
-    //////////////////////////////////////////////////////////////////////////////
-    //Button functionality
-
-    class EventDetail extends AppCompatActivity {
-
-        private Button discoverMoreButton;
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-
-            discoverMoreButton = (Button) findViewById(R.id.discover_more);
-            discoverMoreButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openEventDetails();
-                }
-            });
-        }
-
-        public void openEventDetails() {
-            Intent intent = new Intent(this, EventDetail.class);
-            startActivity(intent);
-        }
-    }
-
-
-
-    //discover Button
-    public void addToSchedule(View v) {
-        Log.d("Event", "addToSchedule was clicked");
     }
 }
