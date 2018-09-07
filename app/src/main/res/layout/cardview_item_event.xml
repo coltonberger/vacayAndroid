@@ -42,7 +42,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="discoverMore"
                 android:text="@string/discover_on_button" />
 
             <Button
@@ -51,7 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="addToSchedule"
                 android:text="@string/add_on_button" />
         </LinearLayout>
 
