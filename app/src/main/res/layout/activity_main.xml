@@ -7,10 +7,33 @@
     android:padding="8dp"
     tools:context=".MainActivity">
 
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="horizontal">
+
+      <Button
+          android:id="@+id/cities_button"
+          android:layout_width="70dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="Cities" />
+
+      <Button
+          android:id="@+id/price_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="Prices" />
+   </LinearLayout>
+
    <android.support.v7.widget.RecyclerView
        android:id="@+id/events_list"
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="match_parent"
+       android:layout_marginTop="55dp"
+       app:layout_constraintTop_toTopOf="parent"
+       tools:layout_editor_absoluteX="8dp">
 
    </android.support.v7.widget.RecyclerView>
 
