@@ -1,79 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/eventCard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context=".MainActivity">
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/details"
-        android:layout_width="154dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Details:"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/event_name"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="97dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/event_name"
-        android:textSize="24sp" />
+        android:layout_height="400dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/event_description"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="144dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/event_description"
-        android:textSize="18sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
 
-    <TextView
-        android:id="@+id/event_city"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_above="@+id/event_price"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/event_city"
-        android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/event_image"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/event_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="151dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/event_price"
-        android:textSize="18sp" />
+            <ImageView
+                android:background="@drawable/gradient_down"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/event_website"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="102dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/event_website" />
+            <TextView
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_margin="16dp"
+                android:textColor="#FFF"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/event_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/event_name" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/event_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Details:"
+                android:textColor="#2d2d2d"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:id="@+id/event_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/event_description" />
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:id="@+id/event_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/event_city" />
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:id="@+id/event_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/event_price" />
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:id="@+id/event_website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/event_website" />
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>

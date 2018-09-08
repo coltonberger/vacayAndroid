@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
                                 eventArrayList.add(appEvent);
                             }
 
+                            Log.d("EVENT_PRICE_LOG", eventArrayList.get(0).getEventPrice()+"");
+
                             mEventListAdapter.setEvents(eventArrayList);
                         }
                     } catch (JSONException e) {
@@ -112,5 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
     ///////////////////////////////////////////////////////////////////////////////
     // Setup the list now with Recycler View (activity main holding recyclerView)
+    //exported to eventlist adapter
 
 }

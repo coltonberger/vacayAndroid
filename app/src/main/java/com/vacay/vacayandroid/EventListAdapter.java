@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHolder> {
-    private List<AppEvent> events = new ArrayList<>();
+    List<AppEvent> events = new ArrayList<>();
 
     public void setEvents(List<AppEvent> appEvents) {
         this.events = appEvents;
@@ -34,26 +34,6 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
     @Override
     public void onBindViewHolder(@NonNull EventListHolder holder, final int position) {
         holder.bindTo(events.get(position)); // that's how to bind
-
-        holder.discoverMoreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("APP_DEBUG", "The item " + position + " has been clicked");
-
-                Intent intent  = new Intent( v.getContext() , EventDetail.class);
-                intent.putExtra("EVENT_NAME", events.get(position).getEventName());
-                intent.putExtra("EVENT_DESCRIPTION", events.get(position).getEventDescription());
-                intent.putExtra("EVENT_CITY", events.get(position).getEventCity());
-
-
-                v.getContext().startActivity(intent);
-            }
-        });
-
-
-        //add onclick listeners here for buttons
-
-
     }
 
     @Override
@@ -63,18 +43,11 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
 
 
     //packages -> adapters, holders, activities, fragments
-    class EventListHolder extends RecyclerView.ViewHolder {
-        //for home display
+    class EventListHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        //for mainPage
         private TextView eventTitle;
         private ImageView eventImage;
         private Button discoverMoreButton;
-
-        //for detailed
-//            private TextView eventName;
-//            private TextView eventDescription;
-//            private TextView eventCity;
-//            private TextView eventPrice;
-//            private TextView eventWebsite;
 
         public EventListHolder(View itemView) {
             super(itemView);
@@ -82,14 +55,7 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
             eventTitle = (TextView) itemView.findViewById(R.id.event_title);
             eventImage = (ImageView) itemView.findViewById(R.id.event_image);
             discoverMoreButton = itemView.findViewById(R.id.discover_more);
-
-            //for detailed
-//                eventName = (TextView) itemView.findViewById(R.id.event_name);
-//                eventDescription = (TextView) itemView.findViewById(R.id.event_description);
-//                eventCity = (TextView) itemView.findViewById(R.id.event_city);
-//                eventPrice = (TextView) itemView.findViewById(R.id.event_price);
-//                eventWebsite = (TextView) itemView.findViewById(R.id.event_website);
-
+            discoverMoreButton.setOnClickListener(this);
         }
 
         public void bindTo(AppEvent appEvent) {
@@ -97,6 +63,31 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
             Picasso.get().load(appEvent.getEventImage()).error(R.drawable.ic_launcher_background).placeholder(R.drawable.ic_launcher_background).into(eventImage);
         }
 
+        private void prepareIntent(Intent intent) {
+            AppEvent appEvent = events.get(getAdapterPosition());
 
+            intent.putExtra(Constants.EVENT_NAME, appEvent.getEventName());
+            intent.putExtra(Constants.EVENT_DESCRIPTION, appEvent.getEventDescription());
+            intent.putExtra(Constants.EVENT_CITY, appEvent.getEventCity());
+            intent.putExtra(Constants.EVENT_PRICE, appEvent.getEventPrice());
+            intent.putExtra(Constants.EVENT_WEBSITE, appEvent.getEventWebsite());
+            intent.putExtra(Constants.EVENT_IMAGE, appEvent.getEventImage());
+        }
+
+        @Override
+        public void onClick(View v) {
+           switch (v.getId()) {
+               case R.id.discover_more:
+                   Intent intent  = new Intent(v.getContext() , EventDetail.class);
+                   prepareIntent(intent);
+                   discoverMoreButton.getContext().startActivity(intent);
+                   break;
+
+               case R.id.add_to_schedule:
+                  /// Intent addToScheduleIntent  = new Intent(v.getContext() , AddToSchedule.class);
+                   break;
+
+           }
+        }
     }
 }
