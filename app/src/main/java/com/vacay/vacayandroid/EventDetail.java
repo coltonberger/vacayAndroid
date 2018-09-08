@@ -86,7 +86,6 @@ public class EventDetail extends AppCompatActivity {
     }
 
     private void initiUI() {
-        //get id from card
         eventNameTextView = findViewById(R.id.event_name);
         eventDescriptionTextView = findViewById(R.id.event_description);
         eventCityTextView = findViewById(R.id.event_city);
