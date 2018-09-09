@@ -2,45 +2,57 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="370dp"
-        android:layout_height="519dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="16dp">
+    <android.support.v7.widget.CardView
+        android:id="@+id/eventCard"
+        android:layout_width="340dp"
+        android:layout_height="110dp"
+        android:layout_margin="20dp"
+        android:clickable="true">
 
-        <android.support.v7.widget.CardView
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            app:srcCompat="@android:drawable/btn_dialog" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/event_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/event_name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/event_name"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/event_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="@string/event_name" />
+            <TextView
+                android:id="@+id/event_description"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginLeft="90dp"
+                android:text="@string/event_description"
+                android:textSize="16sp" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/event_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="@string/event_description" />
-            </LinearLayout>
+    </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
-
-    </LinearLayout>
 </RelativeLayout>
