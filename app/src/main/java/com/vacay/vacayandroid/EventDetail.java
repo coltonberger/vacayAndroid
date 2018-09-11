@@ -55,7 +55,7 @@ public class EventDetail extends AppCompatActivity {
         if(intent.hasExtra(Constants.EVENT_IMAGE)) {
             appEvent.setEventImage(intent.getStringExtra(Constants.EVENT_IMAGE));
         }
-
+        //Log.d("AppEvent", "getData: "+appEvent);
         return appEvent;
     }
 

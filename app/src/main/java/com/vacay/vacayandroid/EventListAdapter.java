@@ -52,8 +52,8 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
 
         public EventListHolder(View itemView) {
             super(itemView);
-            eventTitle = (TextView) itemView.findViewById(R.id.event_title);
-            eventImage = (ImageView) itemView.findViewById(R.id.event_image);
+            eventTitle = itemView.findViewById(R.id.event_title);
+            eventImage = itemView.findViewById(R.id.event_image);
             discoverMoreButton = itemView.findViewById(R.id.discover_more);
             discoverMoreButton.setOnClickListener(this);
             addToScheduleButton = itemView.findViewById(R.id.add_to_schedule);
@@ -87,7 +87,9 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
                    break;
 
                case R.id.add_to_schedule:
-                  /// Intent addToScheduleIntent  = new Intent(v.getContext() , AddToSchedule.class);
+                //POST REQUEST WITH VOLLEY
+//                   Intent addToScheduleIntent  = new Intent(v.getContext() , SavedSchedule.class);
+//                   prepareIntent(addToScheduleIntent);
                    Log.d("Clicked", "onClick: add to schedule clicked");
                    break;
 

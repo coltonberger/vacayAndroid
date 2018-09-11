@@ -23,6 +23,7 @@ public class EventsFragement extends Fragment {
     private EventListAdapter mEventListAdapter;
     private RecyclerView list;
     View view;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,9 +53,8 @@ public class EventsFragement extends Fragment {
                     //Log.d("RESPONSE", response);
                     //parse the response
                     ArrayList<AppEvent> eventArrayList = new ArrayList<>();
-                    // The response is a json
-                    //We have to look at what the structure looks like to parse it
-                    // The response in this case is a jsonArray, other times it can be object
+
+                    // The response is a jsonArray
 
                     //Look at it carefully, in this case it's an array at the base.
 
@@ -96,7 +96,9 @@ public class EventsFragement extends Fragment {
                                 eventArrayList.add(appEvent);
                             }
 
-                            Log.d("EVENT_PRICE_LOG", eventArrayList.get(0).getEventPrice()+"");
+                            Log.d("EVENT_Array", eventArrayList.get(0).getEventImage()+"");
+                            Log.d("EVENT_Array", eventArrayList.get(0).getEventName()+"");
+                            Log.d("EVENT_Array", eventArrayList.get(0).getEventDescription()+"");
 
                             mEventListAdapter.setEvents(eventArrayList);
                         }
