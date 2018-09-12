@@ -16,6 +16,8 @@ public class SavedSchedule extends AppCompatActivity {
     TextView eventPriceIntView;
     TextView eventWebsiteTextView;
     ImageView eventImage;
+    TextView eventId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +56,20 @@ public class SavedSchedule extends AppCompatActivity {
         if(intent.hasExtra(Constants.EVENT_IMAGE)) {
             appEvent.setEventImage(intent.getStringExtra(Constants.EVENT_IMAGE));
         }
+
+//        if(intent.hasExtra(Constants.EVENT_ID)) {
+//            appEvent.setEventImage(intent.getStringExtra(Constants.EVENT_ID));
+//        }
+
         //Log.d("AppEvent", "getData: "+appEvent);
         return appEvent;
     }
 
     private void bindData(AppEvent appEvent) {
+//        if(appEvent.getEventId() != null) {
+//            eventNameTextView.setText(appEvent.getEventId());
+//        }
+
         if(appEvent.getEventName() != null) {
             eventNameTextView.setText(appEvent.getEventName());
         }

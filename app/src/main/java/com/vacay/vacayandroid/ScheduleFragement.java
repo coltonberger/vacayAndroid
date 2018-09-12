@@ -74,6 +74,10 @@ public class ScheduleFragement extends Fragment {
                             savedEvent.setEventCity(data.getString("eventCity"));
                         }
 
+                        if(data.has("id")) {
+                            savedEvent.setEventId(data.getString("id"));
+                        }
+
                         if (data.has("schedule_id")) {
                             savedEvent.setScheduleId(data.getInt("schedule_id"));
                         }

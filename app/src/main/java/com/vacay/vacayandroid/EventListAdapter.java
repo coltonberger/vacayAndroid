@@ -11,10 +11,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHolder> {
     List<AppEvent> events = new ArrayList<>();
@@ -76,6 +84,43 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
             intent.putExtra(Constants.EVENT_IMAGE, appEvent.getEventImage());
         }
 
+        public void addEvent() {
+            //POST REQUEST WITH VOLLEY
+            //RequestQueue queue = Volley.newRequestQueue();
+            String url = "https://vaca-backend.herokuapp.com/schedules/1";
+            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Log.d("Response", response);
+                        }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // error
+                            //Log.d("Error.Response", response);
+                        }
+                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams()
+                {         // Adding parameters
+                    Map<String, String>  params = new HashMap<String, String>();
+                    params.put("id", "value1");
+                    params.put("eventName", "value2");
+                    params.put("eventCity", "value3");
+                    params.put("eventDescription", "value4");
+
+                    return params;
+                }
+            };
+            //queue.add(postRequest);
+        }
+
         @Override
         public void onClick(View v) {
            switch (v.getId()) {
@@ -87,7 +132,8 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
                    break;
 
                case R.id.add_to_schedule:
-                //POST REQUEST WITH VOLLEY
+                   addEvent();
+
 //                   Intent addToScheduleIntent  = new Intent(v.getContext() , SavedSchedule.class);
 //                   prepareIntent(addToScheduleIntent);
                    Log.d("Clicked", "onClick: add to schedule clicked");
