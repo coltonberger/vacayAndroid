@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -57,6 +58,7 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
         private ImageView eventImage;
         private Button discoverMoreButton;
         private Button addToScheduleButton;
+        private AppEvent mSaveEvent;
 
         public EventListHolder(View itemView) {
             super(itemView);
@@ -69,8 +71,10 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
         }
 
         public void bindTo(AppEvent appEvent) {
+            this.mSaveEvent = appEvent;
             eventTitle.setText(appEvent.getEventName());
             Picasso.get().load(appEvent.getEventImage()).error(R.drawable.ic_launcher_background).placeholder(R.drawable.ic_launcher_background).into(eventImage);
+            Log.d("SaveEvent", "SaveEvent"+mSaveEvent);
         }
 
         private void prepareIntent(Intent intent) {
@@ -84,45 +88,8 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
             intent.putExtra(Constants.EVENT_IMAGE, appEvent.getEventImage());
         }
 
-        public void addEvent() {
-            //POST REQUEST WITH VOLLEY
-            //RequestQueue queue = Volley.newRequestQueue();
-            String url = "https://vaca-backend.herokuapp.com/schedules/1";
-            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>()
-                    {
-                        @Override
-                        public void onResponse(String response) {
-                            // response
-                            Log.d("Response", response);
-                        }
-                    },
-                    new Response.ErrorListener()
-                    {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            // error
-                            //Log.d("Error.Response", response);
-                        }
-                    }
-            ) {
-                @Override
-                protected Map<String, String> getParams()
-                {         // Adding parameters
-                    Map<String, String>  params = new HashMap<String, String>();
-                    params.put("id", "value1");
-                    params.put("eventName", "value2");
-                    params.put("eventCity", "value3");
-                    params.put("eventDescription", "value4");
-
-                    return params;
-                }
-            };
-            //queue.add(postRequest);
-        }
-
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
            switch (v.getId()) {
                case R.id.discover_more:
                    //Log.d("Clicked", "onClick: discover clicked");
@@ -132,11 +99,48 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
                    break;
 
                case R.id.add_to_schedule:
-                   addEvent();
 
+                   RequestQueue queue = Volley.newRequestQueue(v.getContext());
+                   Log.d("addToSchedule", "clicked id: "+ this.mSaveEvent.getEventId());
+                   Log.d("addToSchedule", "clicked name: "+ this.mSaveEvent.getEventName());
+                   Log.d("addToSchedule", "clicked city: "+ this.mSaveEvent.getEventCity());
+                   Log.d("addToSchedule", "clicked description: "+ this.mSaveEvent.getEventDescription());
+
+                   String url = "https://vaca-backend.herokuapp.com/schedules/"+ this.mSaveEvent.getEventId();
+                   StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                           new Response.Listener<String>()
+                           {
+                               @Override
+                               public void onResponse(String response) {
+                                   Log.d("Response", response);
+                               }
+                           },
+                           new Response.ErrorListener()
+                           {
+                               @Override
+                               public void onErrorResponse(VolleyError error) {
+                                   Toast.makeText(v.getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                               }
+                           }
+                   ) {
+                       @Override
+                       protected Map<String, String> getParams()
+                       {         // Adding parameters
+                           Map<String, String>  params = new HashMap<String, String>();
+                           params.put("id", mSaveEvent.getEventId());
+                           params.put("eventName", mSaveEvent.getEventName());
+                           params.put("eventCity", mSaveEvent.getEventCity());
+                           params.put("eventDescription", mSaveEvent.getEventDescription());
+                           params.put("schedule_Id", "1");
+
+                           Log.d("params", "getParams: "+ params);
+                           return params;
+                       }
+                   };
+                   queue.add(postRequest);
 //                   Intent addToScheduleIntent  = new Intent(v.getContext() , SavedSchedule.class);
 //                   prepareIntent(addToScheduleIntent);
-                   Log.d("Clicked", "onClick: add to schedule clicked");
+                   //Log.d("Clicked", "onClick: add to schedule clicked");
                    break;
 
            }

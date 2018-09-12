@@ -57,10 +57,6 @@ public class SavedSchedule extends AppCompatActivity {
             appEvent.setEventImage(intent.getStringExtra(Constants.EVENT_IMAGE));
         }
 
-//        if(intent.hasExtra(Constants.EVENT_ID)) {
-//            appEvent.setEventImage(intent.getStringExtra(Constants.EVENT_ID));
-//        }
-
         //Log.d("AppEvent", "getData: "+appEvent);
         return appEvent;
     }

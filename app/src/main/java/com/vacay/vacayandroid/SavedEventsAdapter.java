@@ -85,10 +85,10 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
             switch (v.getId()) {
                 case R.id.delete_event:
                     //Instantiate the RequestQueue
-                    Log.d("eventId", "clicked view"+ this.mSavedEvent.getEventId());
+                    //Log.d("eventId", "clicked view"+ this.mSavedEvent.getEventId());
                     RequestQueue queue = Volley.newRequestQueue(v.getContext());
                     String url = "https://vaca-backend.herokuapp.com/savedEvents/" + this.mSavedEvent.getEventId() + "/" + mSavedEvent.getScheduleId();
-                    Log.d("URL", url);
+                    //Log.d("URL", url);
                     StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, url,
                             new Response.Listener<String>()
                             {
