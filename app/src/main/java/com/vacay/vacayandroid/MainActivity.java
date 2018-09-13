@@ -56,16 +56,20 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //Starting point when app opens
+        //Start on events page
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new EventsFragement()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
-        ////////////end of toolbar
-
+        //Go to logoutPage
+//        public void logoutPage(View view) {
+//            Intent startNewActivity = new Intent(this, Login.class);
+//        }
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -77,24 +81,31 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
                 break;
             case R.id.losangeles_filter:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
                 Toast.makeText(this, "LA clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nyc_filter:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
                 Toast.makeText(this, "NYC clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sf_filter:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
                 Toast.makeText(this, "SF clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cheap_filter:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
                 Toast.makeText(this, "Less than $20", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.medium_filter:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
                 Toast.makeText(this, "$20-$40", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.expensive_filter:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
                 Toast.makeText(this, "Greater than $40", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.logout:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
                 Toast.makeText(this, "Logout Clicked", Toast.LENGTH_SHORT).show();
                 break;
         }
