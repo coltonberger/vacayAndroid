@@ -17,14 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:padding="8dp"
-        android:text="Coding in Flow"
+        android:text="Welcome, Colton"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        />
-
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Additional Info"
         />
 
 </LinearLayout>
