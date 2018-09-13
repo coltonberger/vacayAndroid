@@ -13,4 +13,32 @@
             android:title="Events"/>
     </group>>
 
+    <item android:title="Cities">
+        <menu>
+            <item android:id="@+id/losangeles_filter"
+                android:title="Los Angeles"/>
+            <item android:id="@+id/nyc_filter"
+                android:title="New York City"/>
+            <item android:id="@+id/sf_filter"
+                android:title="San Francisco"/>
+        </menu>
+    </item>
+
+    <item android:title="Event Prices">
+        <menu>
+            <item android:id="@+id/cheap_filter"
+                android:title="$"/>
+            <item android:id="@+id/medium_filter"
+                android:title="$$"/>
+            <item android:id="@+id/expensive_filter"
+                android:title="$$$"/>
+        </menu>
+    </item>
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Sign Out"/>
+    </group>>
+
 </menu>

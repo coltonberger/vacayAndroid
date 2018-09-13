@@ -105,37 +105,6 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventListHo
 
                case R.id.add_to_schedule:
 
-                   /**
-                    *
-                    created_at
-                    :
-                    "2018-09-01T23:20:45.418Z"
-                    eventCity
-                    :
-                    "Los Angeles"
-                    eventDescription
-                    :
-                    "PLEASE JOIN US FOR A LITTLE COFFEE AND A LOT OF AMAZING AUTOMOBILES."
-                    eventImage
-                    :
-                    "http://ajeclassics.co.uk/wp-content/uploads/2016/03/Jag-129.jpg"
-                    eventName
-                    :
-                    "Cars and Coffee"
-                    eventPrice
-                    :
-                    5
-                    eventWebsite
-                    :
-                    "https://www.eventbrite.com/e/cars-and-coffee-la-tickets-34210770335"
-                    id
-                    :
-                    3
-                    updated_at
-                    :
-                    "2018-09-01T23:20:45.418Z"
-                    */
-
                    RequestQueue queue = Volley.newRequestQueue(v.getContext());
 //                   Log.d("addToSchedule", "clicked id: "+ this.mSaveEvent.getEventId());
 //                   Log.d("addToSchedule", "clicked name: "+ this.mSaveEvent.getEventName());

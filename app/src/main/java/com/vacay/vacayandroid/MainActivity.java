@@ -76,6 +76,27 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
                 break;
+            case R.id.losangeles_filter:
+                Toast.makeText(this, "LA clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nyc_filter:
+                Toast.makeText(this, "NYC clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sf_filter:
+                Toast.makeText(this, "SF clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.cheap_filter:
+                Toast.makeText(this, "Less than $20", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.medium_filter:
+                Toast.makeText(this, "$20-$40", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.expensive_filter:
+                Toast.makeText(this, "Greater than $40", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logout:
+                Toast.makeText(this, "Logout Clicked", Toast.LENGTH_SHORT).show();
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
