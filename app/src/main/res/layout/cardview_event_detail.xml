@@ -118,10 +118,13 @@
 
                 <TextView
                     android:id="@+id/event_website"
+                    android:autoLink="web"
+                    android:clickable="true"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="EventWebsite" />
+                    android:text="EventWebsite"
+                    android:linksClickable="true"/>
 
             </LinearLayout>
 
