@@ -3,7 +3,7 @@
     android:id="@+id/eventCard"
     android:layout_width="340dp"
     android:layout_height="310dp"
-    android:layout_margin="20dp"
+    android:layout_margin="7dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:elevation="10dp"

@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/postal_icon"
-        android:layout_width="294dp"
-        android:layout_height="262dp"
+        android:layout_width="258dp"
+        android:layout_height="201dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
@@ -17,13 +17,13 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="84dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="147dp"
+        android:layout_marginTop="115dp"
         android:text="vā kā"
-        android:textSize="35sp" />
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/email"

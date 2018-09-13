@@ -73,11 +73,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Location" />
+                    android:text="Location:" />
 
                 <TextView
                     android:id="@+id/event_city"
-                    android:layout_width="290dp"
+                    android:layout_width="260dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="event City" />
@@ -98,7 +98,7 @@
 
                 <TextView
                     android:id="@+id/event_price"
-                    android:layout_width="350dp"
+                    android:layout_width="310dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/event_price" />
@@ -118,7 +118,7 @@
 
                 <TextView
                     android:id="@+id/event_website"
-                    android:layout_width="270dp"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="EventWebsite" />
