@@ -13,14 +13,6 @@
         android:orientation="vertical">
 
 
-        <ImageView
-            android:id="@+id/event_image"
-            android:layout_width="match_parent"
-            android:layout_height="237dp"
-            android:background="#2d2d2d"
-            android:contentDescription="@string/event_image"
-            android:scaleType="centerCrop" />
-
         <TextView
             android:id="@+id/event_title"
             android:layout_width="match_parent"
@@ -29,6 +21,14 @@
             android:text="@string/event_name"
             android:textColor="#2d2d2d"
             android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/event_image"
+            android:layout_width="match_parent"
+            android:layout_height="237dp"
+            android:background="#2d2d2d"
+            android:contentDescription="@string/event_image"
+            android:scaleType="centerCrop" />
 
 
         <LinearLayout
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/discover_on_button" />
+                android:text="The Deets" />
 
             <Button
                 android:id="@+id/add_to_schedule"
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/add_on_button" />
+                android:text="Add" />
         </LinearLayout>
 
 
