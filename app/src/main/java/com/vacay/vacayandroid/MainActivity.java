@@ -1,5 +1,6 @@
 package com.vacay.vacayandroid;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuItemView;
@@ -33,7 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
 
@@ -62,14 +63,17 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                     new EventsFragement()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
-        //Go to logoutPage
-//        public void logoutPage(View view) {
-//            Intent startNewActivity = new Intent(this, Login.class);
-//        }
     }
 
 
+    private EventsFragement getFragmentWithBundle(Bundle bundle) {
+        EventsFragement eventsFragement = new EventsFragement();
+        eventsFragement.setArguments(bundle);
+
+        return eventsFragement;
+    }
+
+    android.support.v4.app.Fragment currentEvent;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -78,31 +82,44 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ScheduleFragement()).commit();
                 break;
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
+                currentEvent = new EventsFragement();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentEvent).commit();
                 break;
             case R.id.losangeles_filter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.CITY, Constants.LA);
+                currentEvent = getFragmentWithBundle(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentEvent).commit();
                 Toast.makeText(this, "LA clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nyc_filter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
+                Bundle bundleNY = new Bundle();
+                bundleNY.putString(Constants.CITY, Constants.NY);
+                currentEvent = getFragmentWithBundle(bundleNY);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentEvent).commit();
                 Toast.makeText(this, "NYC clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sf_filter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
+                Bundle bundleSF = new Bundle();
+                bundleSF.putString(Constants.CITY, Constants.SF);
+                currentEvent = getFragmentWithBundle(bundleSF);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentEvent).commit();
                 Toast.makeText(this, "SF clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cheap_filter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
-                Toast.makeText(this, "Less than $20", Toast.LENGTH_SHORT).show();
+                if(currentEvent != null) {
+                    ((EventsFragement)currentEvent).setFilter(Constants.CHEAP);
+                }
                 break;
             case R.id.medium_filter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
-                Toast.makeText(this, "$20-$40", Toast.LENGTH_SHORT).show();
+                if(currentEvent != null) {
+                    ((EventsFragement)currentEvent).setFilter(Constants.MEDIUM);
+                }
                 break;
             case R.id.expensive_filter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
-                Toast.makeText(this, "Greater than $40", Toast.LENGTH_SHORT).show();
+                if(currentEvent != null) {
+                    ((EventsFragement)currentEvent).setFilter(Constants.EXPENSIVE);
+                }
                 break;
             case R.id.logout:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
@@ -116,10 +133,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-        super.onBackPressed();
+            super.onBackPressed();
         }
     }
 }

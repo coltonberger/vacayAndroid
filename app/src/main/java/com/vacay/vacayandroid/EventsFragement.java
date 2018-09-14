@@ -18,26 +18,80 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EventsFragement extends Fragment {
     private EventListAdapter mEventListAdapter;
     private RecyclerView list;
+    private String usePrice;
+    String filter;
     View view;
+    List<AppEvent> appEvents = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view  = inflater.inflate(R.layout.fragment_events, container, false);
+        view = inflater.inflate(R.layout.fragment_events, container, false);
 
         initAdapter();
+
+        getArgs();
 
         getEvents();
 
         return view;
     }
 
+    //filters for both city and price
+    private void getArgs() {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            if (bundle.containsKey(Constants.CITY)) filter = bundle.getString(Constants.CITY);
+            if (bundle.containsKey(Constants.USE_PRICE))
+                usePrice = bundle.getString(Constants.USE_PRICE);
+        }
+    }
+
+    //filtering by event price adding it to city that was filtered
+    public void setFilter(String filter) {
+        if(appEvents != null && appEvents.size() > 0) {
+            if(filter.equalsIgnoreCase(Constants.CHEAP)) {
+                List<AppEvent> events = new ArrayList<>();
+                for (AppEvent  event : appEvents) {
+                    if(event.getEventPrice() <= 20) {
+                        events.add(event);
+                    }
+                }
+
+                mEventListAdapter.setEvents(events);
+            }
+
+            if(filter.equalsIgnoreCase(Constants.MEDIUM)) {
+                List<AppEvent> events = new ArrayList<>();
+                for (AppEvent  event : appEvents) {
+                    if(event.getEventPrice() > 20 && event.getEventPrice() < 40) {
+                        events.add(event);
+                    }
+                }
+
+                mEventListAdapter.setEvents(events);
+            }
+
+            if(filter.equalsIgnoreCase(Constants.EXPENSIVE)) {
+                List<AppEvent> events = new ArrayList<>();
+                for (AppEvent event : appEvents) {
+                    if(event.getEventPrice() > 40) {
+                        events.add(event);
+                    }
+                }
+
+                mEventListAdapter.setEvents(events);
+            }
+        }
+    }
+
     private void initAdapter() {
-        mEventListAdapter  = new EventListAdapter();
+        mEventListAdapter = new EventListAdapter();
         list = view.findViewById(R.id.events_list);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
         list.setAdapter(mEventListAdapter);
@@ -52,7 +106,7 @@ public class EventsFragement extends Fragment {
                 } else {
                     //Log.d("RESPONSE", response);
                     //parse the response
-                    ArrayList<AppEvent> eventArrayList = new ArrayList<>();
+
 
                     // The response is a jsonArray
 
@@ -65,42 +119,52 @@ public class EventsFragement extends Fragment {
                             for (int i = 0; i < dataArray.length(); i++) {
                                 AppEvent appEvent = new AppEvent();
                                 JSONObject eventObject = dataArray.getJSONObject(i);
-                                if(eventObject.has("eventName")) {
+                                if (eventObject.has("eventName")) {
                                     appEvent.setEventName(eventObject.getString("eventName"));
                                 }
 
-                                if(eventObject.has("eventImage")) {
+                                if (eventObject.has("eventImage")) {
                                     appEvent.setEventImage(eventObject.getString("eventImage"));
                                 }
 
-                                if(eventObject.has("eventDescription")) {
+                                if (eventObject.has("eventDescription")) {
                                     appEvent.setEventDescription(eventObject.getString("eventDescription"));
                                 }
 
-                                if(eventObject.has("id")) {
+                                if (eventObject.has("id")) {
                                     appEvent.setEventId(eventObject.getString("id"));
                                 }
 
-                                if(eventObject.has("eventPrice")) {
+                                if (eventObject.has("eventPrice")) {
                                     appEvent.setEventPrice(eventObject.getInt("eventPrice"));
                                 }
 
-                                if(eventObject.has("eventCity")) {
+                                if (eventObject.has("eventCity")) {
                                     appEvent.setEventCity(eventObject.getString("eventCity"));
                                 }
 
-                                if(eventObject.has("eventWebsite")) {
+                                if (eventObject.has("eventWebsite")) {
                                     appEvent.setEventWebsite(eventObject.getString("eventWebsite"));
                                 }
 
-                                eventArrayList.add(appEvent);
+                                appEvents.add(appEvent);
                             }
 
-                            Log.d("EVENT_Array", eventArrayList.get(0).getEventImage()+"");
-                            Log.d("EVENT_Array", eventArrayList.get(0).getEventName()+"");
-                            Log.d("EVENT_Array", eventArrayList.get(0).getEventDescription()+"");
+                            if (filter != null && !filter.isEmpty()) {
+                                ArrayList<AppEvent> events = new ArrayList<>();
+                                for (AppEvent event : appEvents) {
+                                    if (event.getEventCity().toLowerCase().contains(filter.toLowerCase())) {
+                                        events.add(event);
+                                    }
+                                }
 
-                            mEventListAdapter.setEvents(eventArrayList);
+                                appEvents.clear();
+                                appEvents.addAll(events);
+                                mEventListAdapter.setEvents(appEvents);
+
+                            }  else {
+                                mEventListAdapter.setEvents(appEvents);
+                            }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
