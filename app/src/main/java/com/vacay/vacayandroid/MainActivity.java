@@ -90,40 +90,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 bundle.putString(Constants.CITY, Constants.LA);
                 currentEvent = getFragmentWithBundle(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentEvent).commit();
-                Toast.makeText(this, "LA clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "LA Events", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nyc_filter:
                 Bundle bundleNY = new Bundle();
                 bundleNY.putString(Constants.CITY, Constants.NY);
                 currentEvent = getFragmentWithBundle(bundleNY);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentEvent).commit();
-                Toast.makeText(this, "NYC clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "NYC Events", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sf_filter:
                 Bundle bundleSF = new Bundle();
                 bundleSF.putString(Constants.CITY, Constants.SF);
                 currentEvent = getFragmentWithBundle(bundleSF);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, currentEvent).commit();
-                Toast.makeText(this, "SF clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "SF Events", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cheap_filter:
                 if(currentEvent != null) {
                     ((EventsFragement)currentEvent).setFilter(Constants.CHEAP);
+                    Toast.makeText(this, "Applied filter", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.medium_filter:
                 if(currentEvent != null) {
                     ((EventsFragement)currentEvent).setFilter(Constants.MEDIUM);
+                    Toast.makeText(this, "Applied filter", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.expensive_filter:
                 if(currentEvent != null) {
                     ((EventsFragement)currentEvent).setFilter(Constants.EXPENSIVE);
+                    Toast.makeText(this, "Applied filter", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.logout:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventsFragement()).commit();
-                Toast.makeText(this, "Logout Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
                 break;
         }
 
