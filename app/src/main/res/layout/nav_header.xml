@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="85dp"
         android:layout_height="85dp"
-        app:srcCompat="@drawable/me" />
+        app:srcCompat="@drawable/cb" />
 
     <TextView
         android:layout_width="wrap_content"
