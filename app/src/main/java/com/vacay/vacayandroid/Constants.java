@@ -7,6 +7,7 @@ public class Constants {
     public static final String EVENT_CITY = "EVENT_CITY";
     public static final String EVENT_WEBSITE = "EVENT_WEBSITE";
     public static final String EVENT_IMAGE = "EVENT_IMAGE";
+    public static final String EVENT_ICON = "EVENT_ICON";
 
 
     public static final String LA = "Los Angeles";

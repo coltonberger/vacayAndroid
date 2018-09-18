@@ -3,6 +3,7 @@ package com.vacay.vacayandroid;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class SavedSchedule extends AppCompatActivity {
     TextView eventPriceIntView;
     TextView eventWebsiteTextView;
     ImageView eventImage;
+    ImageView eventIcon;
     TextView eventId;
 
     @Override
@@ -57,7 +59,11 @@ public class SavedSchedule extends AppCompatActivity {
             appEvent.setEventImage(intent.getStringExtra(Constants.EVENT_IMAGE));
         }
 
-        //Log.d("AppEvent", "getData: "+appEvent);
+        if(intent.hasExtra(Constants.EVENT_ICON)) {
+            appEvent.setEventIcon(intent.getStringExtra(Constants.EVENT_ICON));
+        }
+
+        Log.d("AppEvent", "getData: "+appEvent);
         return appEvent;
     }
 
@@ -89,6 +95,10 @@ public class SavedSchedule extends AppCompatActivity {
         if(appEvent.getEventImage() != null) {
             Picasso.get().load(appEvent.getEventImage()).error(R.drawable.ic_launcher_background).into(eventImage);
         }
+
+        if(appEvent.getEventImage() != null) {
+            Picasso.get().load(appEvent.getEventIcon()).error(R.drawable.ic_launcher_background).into(eventIcon);
+        }
     }
 
     private void initiUI() {
@@ -98,5 +108,6 @@ public class SavedSchedule extends AppCompatActivity {
         eventPriceIntView = findViewById(R.id.event_price);
         eventWebsiteTextView = findViewById(R.id.event_website);
         eventImage = findViewById(R.id.event_image);
+        eventIcon = findViewById(R.id.event_icon);
     }
 }

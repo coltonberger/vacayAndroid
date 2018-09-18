@@ -3,6 +3,7 @@ package com.vacay.vacayandroid;
 public class SavedEvent {
     private String eventName;
     private String eventImage;
+    private String eventIcon;
     private String eventId;
     private String eventDescription;
     private String createdAt;
@@ -25,6 +26,14 @@ public class SavedEvent {
 
     public void setEventImage(String eventImage) {
         this.eventImage = eventImage;
+    }
+
+    public String getEventIcon() {
+        return eventIcon;
+    }
+
+    public void setEventIcon(String eventIcon) {
+        this.eventIcon = eventIcon;
     }
 
     public String getEventId() {
@@ -88,6 +97,7 @@ public class SavedEvent {
         return "ScheduledEvent{" +
                 "eventName='" + eventName + '\'' +
                 ", eventImage='" + eventImage + '\'' +
+                ", eventImage='" + eventIcon + '\'' +
                 ", eventId='" + eventId + '\'' +
                 ", eventDescription='" + eventDescription + '\'' +
                 ", createdAt='" + createdAt + '\'' +

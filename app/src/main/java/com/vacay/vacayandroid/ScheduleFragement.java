@@ -66,6 +66,10 @@ public class ScheduleFragement extends Fragment {
                             savedEvent.setEventName(data.getString("eventName"));
                         }
 
+                        if (data.has("eventIcon")) {
+                            savedEvent.setEventIcon(data.getString("eventIcon"));
+                        }
+
                         if (data.has("eventDescription")) {
                             savedEvent.setEventDescription(data.getString("eventDescription"));
                         }

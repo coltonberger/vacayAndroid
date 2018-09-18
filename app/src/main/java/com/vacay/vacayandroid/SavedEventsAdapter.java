@@ -55,16 +55,18 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
     //packages -> adapters, holders, activities, fragments
     class SavedEventListHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         //for mainPage
-        private ImageView eventImage;
+        //private ImageView eventImage;
         private TextView eventName;
         private TextView eventDescription;
         private ImageView delete;
         private SavedEvent mSavedEvent;
+        private ImageView eventIcon;
 
         public SavedEventListHolder(View itemView)  {
             super(itemView);
             eventName = itemView.findViewById(R.id.event_name);
-            eventImage = itemView.findViewById(R.id.event_image);
+            //eventImage = itemView.findViewById(R.id.event_image);
+            eventIcon = itemView.findViewById(R.id.event_icon);
             delete = itemView.findViewById(R.id.delete_event);
             eventDescription= itemView.findViewById(R.id.event_description);
             delete.setOnClickListener(this);
@@ -74,7 +76,7 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
             this.mSavedEvent = appEvent;
             eventName.setText(appEvent.getEventName());
             eventDescription.setText(appEvent.getEventDescription());
-            Picasso.get().load(appEvent.getEventImage()).error(R.drawable.ic_launcher_background).placeholder(R.drawable.ic_launcher_background).into(eventImage);
+            Picasso.get().load(appEvent.getEventIcon()).error(R.drawable.ic_launcher_background).placeholder(R.drawable.ic_launcher_background).into(eventIcon);
             Log.d("SavedEvent", "SavedEvent"+mSavedEvent);
         }
 

@@ -5,6 +5,7 @@ package com.vacay.vacayandroid;
 public class AppEvent {
     private String eventName;
     private String eventImage;
+    private String eventIcon;
     private String eventId;
     private String eventDescription;
     private String createdAt;
@@ -26,6 +27,14 @@ public class AppEvent {
 
     public void setEventImage(String eventImage) {
         this.eventImage = eventImage;
+    }
+
+    public String getEventIcon() {
+        return eventIcon;
+    }
+
+    public void setEventIcon(String eventIcon) {
+        this.eventIcon = eventIcon;
     }
 
     public String getEventId() {
@@ -81,6 +90,7 @@ public class AppEvent {
         return "AppEvent{" +
                 "eventName='" + eventName + '\'' +
                 ", eventImage='" + eventImage + '\'' +
+                ", eventIcon='" + eventIcon + '\'' +
                 ", eventId='" + eventId + '\'' +
                 ", eventDescription='" + eventDescription + '\'' +
                 ", createdAt='" + createdAt + '\'' +
