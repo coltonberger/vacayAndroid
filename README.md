@@ -14,3 +14,7 @@ Front-end: Java, Android Studios, Volley-HTTP Client
 - [x] Include some client-side validation.
 - [x] Have your frontend interact with routes.
 - [x] Have a separate project directory and GitHub repository for your frontend.
+
+![alt text](homescreen.png) <br />
+![alt text](navbar.png) <br />
+![alt text](savedevents.png)
